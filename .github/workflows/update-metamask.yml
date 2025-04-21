@@ -1,0 +1,53 @@
+name: Update MetaMask Extension
+
+on:
+  workflow_dispatch: # Allow manual trigger
+  # schedule:
+  #   - cron: '0 0 1 * *' # Uncomment to run monthly on the 1st at 00:00 UTC
+
+jobs:
+  update-metamask:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Install Corepack and enable it
+        run: |
+          corepack enable
+          corepack prepare yarn@stable --activate
+
+      - name: Clone MetaMask repo
+        run: |
+          git clone https://github.com/MetaMask/metamask-extension.git
+          cd metamask-extension
+
+          # Use Corepack to prepare Yarn from package.json
+          corepack enable
+          yarn set version from sources
+        working-directory: ${{ github.workspace }}
+
+      - name: Install dependencies
+        run: |
+          cd metamask-extension
+          yarn install --immutable
+
+      - name: Build MetaMask
+        run: |
+          cd metamask-extension
+          yarn dist --apply-lavamoat=false
+
+      - name: Copy built files to this repo
+        run: |
+          rm -rf dist && mkdir dist
+          cp -r metamask-extension/dist/chrome/* dist/
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist/
+          git commit -m "Update MetaMask dist files"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
