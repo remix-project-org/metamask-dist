@@ -24,6 +24,15 @@ jobs:
           corepack enable
           yarn set version 4.7.0
 
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: tmp-metamask/node_modules
+          key: metamask-node-modules-${{ hashFiles('tmp-metamask/yarn.lock') }}
+          restore-keys: |
+            metamask-node-modules-
+
       - name: Install dependencies
         run: |
           cd tmp-metamask
