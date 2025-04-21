@@ -27,12 +27,12 @@ jobs:
         run: |
           cd metamask-extension
           corepack enable
-          yarn set version from sources
+          yarn set version 4.7.0
 
       - name: Install dependencies
         run: |
           cd metamask-extension
-          yarn install --immutable
+          yarn install
 
       - name: Build MetaMask
         run: |
