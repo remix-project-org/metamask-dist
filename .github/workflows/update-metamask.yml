@@ -24,15 +24,6 @@ jobs:
           corepack enable
           yarn set version 4.7.0
 
-
-      - name: Cache node_modules
-        uses: actions/cache@v4
-        with:
-          path: tmp-metamask/node_modules
-          key: metamask-node-modules-${{ hashFiles('tmp-metamask/yarn.lock') }}
-          restore-keys: |
-            metamask-node-modules-
-
       - name: Install dependencies
         run: |
           cd tmp-metamask
@@ -54,10 +45,6 @@ jobs:
           rm -rf dist && mkdir dist
           cp -r tmp-metamask/dist/chrome/. dist/
 
-
-      - name: List contents of dist (including hidden files)
-        run: ls -la dist
-
       - name: Clean up temp clone
         run: rm -rf tmp-metamask
 
@@ -74,4 +61,3 @@ jobs:
             Triggered by GitHub Actions.
           add-paths: |
             dist/**
-            dist/.*  # 👈 this line ensures .version and other dotfiles are added
