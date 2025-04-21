@@ -68,6 +68,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: update-metamask-${{ github.run_id }}
+          base: main  # 👈 make sure this is your real base branch
           title: "Update MetaMask dist files"
           body: |
             This PR updates the dist files from MetaMask.
