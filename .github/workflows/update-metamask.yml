@@ -41,7 +41,6 @@ jobs:
 
       - name: Configure .metamaskrc with Infura Project ID
         run: |
-          cd metamask-extension
           cp .metamaskrc{.dist,}
           sed -i "s/^INFURA_PROJECT_ID=.*/INFURA_PROJECT_ID=${INFURA_PROJECT_ID}/" .metamaskrc
         working-directory: metamask-extension
