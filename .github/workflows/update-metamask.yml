@@ -34,11 +34,6 @@ jobs:
           cd metamask-extension
           yarn install
 
-      - name: Build MetaMask
-        run: |
-          cd metamask-extension
-          yarn dist --apply-lavamoat=false
-
       - name: Configure .metamaskrc with Infura Project ID
         run: |
           cp .metamaskrc{.dist,}
@@ -46,6 +41,13 @@ jobs:
         working-directory: metamask-extension
         env:
           INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
+
+      - name: Build MetaMask
+        run: |
+          cd metamask-extension
+          yarn dist --apply-lavamoat=false
+
+
 
       - name: Copy built files to this repo
         run: |
