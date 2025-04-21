@@ -45,6 +45,10 @@ jobs:
           rm -rf dist && mkdir dist
           cp -r tmp-metamask/dist/chrome/. dist/
 
+
+      - name: List contents of dist (including hidden files)
+        run: ls -la dist
+
       - name: Clean up temp clone
         run: rm -rf tmp-metamask
 
