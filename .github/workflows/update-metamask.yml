@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BROWSERIFY_SHIM_DISABLE_LAVAMOAT: 1
+      INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
 
     steps:
       - name: Checkout this repo
@@ -33,7 +34,7 @@ jobs:
           cp .metamaskrc{.dist,}
           sed -i "s/^INFURA_PROJECT_ID=.*/INFURA_PROJECT_ID=${INFURA_PROJECT_ID}/" .metamaskrc
         working-directory: tmp-metamask
-
+        
       - name: Build Chrome dist
         run: |
           cd tmp-metamask
