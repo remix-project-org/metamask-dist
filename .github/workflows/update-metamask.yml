@@ -8,6 +8,8 @@ on:
 jobs:
   update-metamask:
     runs-on: ubuntu-latest
+    env:
+      BROWSERIFY_SHIM_DISABLE_LAVAMOAT: 1
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v4
