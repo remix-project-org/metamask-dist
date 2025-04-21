@@ -54,12 +54,21 @@ jobs:
           rm -rf dist && mkdir dist
           cp -r metamask-extension/dist/chrome/* dist/
 
-      - name: Commit and push changes
+      - name: Create and push branch with changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git checkout -b update-metamask-${{ github.run_id }}
           git add dist/
           git commit -m "Update MetaMask dist files"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push origin update-metamask-${{ github.run_id }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update-metamask-${{ github.run_id }}
+          title: "Update MetaMask dist files"
+          body: |
+            This PR updates the dist files from MetaMask.
+            Generated automatically by the GitHub Action.
