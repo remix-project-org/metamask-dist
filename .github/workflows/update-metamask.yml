@@ -65,3 +65,4 @@ jobs:
             Triggered by GitHub Actions.
           add-paths: |
             dist/**
+            dist/.*  # 👈 this line ensures .version and other dotfiles are added
