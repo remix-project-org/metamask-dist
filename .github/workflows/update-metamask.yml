@@ -1,12 +1,10 @@
-name: Update MetaMask Extension
+name: Update MetaMask Chrome
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 0 1 * *' # Uncomment to run monthly on the 1st at 00:00 UTC
 
 jobs:
-  update-metamask:
+  build:
     runs-on: ubuntu-latest
     env:
       BROWSERIFY_SHIM_DISABLE_LAVAMOAT: 1
@@ -15,52 +13,47 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@v4
 
-      - name: Install Corepack and enable it
+      - name: Clone MetaMask extension (shallow)
         run: |
-          corepack enable
+          git clone --depth=1 https://github.com/MetaMask/metamask-extension.git tmp-metamask
 
-      - name: Clone MetaMask repo
+      - name: Set up correct Yarn
         run: |
-          git clone https://github.com/MetaMask/metamask-extension.git
-
-      - name: Set Yarn version from MetaMask package.json
-        run: |
-          cd metamask-extension
+          cd tmp-metamask
           corepack enable
-          yarn set version 4.7.0
+          yarn set version from sources
 
       - name: Install dependencies
         run: |
-          cd metamask-extension
+          cd tmp-metamask
           yarn install
 
-      - name: Configure .metamaskrc with Infura Project ID
+      - name: Configure .metamaskrc
         run: |
           cp .metamaskrc{.dist,}
           sed -i "s/^INFURA_PROJECT_ID=.*/INFURA_PROJECT_ID=${INFURA_PROJECT_ID}/" .metamaskrc
-        working-directory: metamask-extension
-        env:
-          INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
+        working-directory: tmp-metamask
 
-      - name: Build MetaMask
+      - name: Build Chrome dist
         run: |
-          cd metamask-extension
+          cd tmp-metamask
           yarn dist --apply-lavamoat=false
 
-
-
-      - name: Copy built files to this repo
+      - name: Copy built dist/chrome to repo
         run: |
           rm -rf dist && mkdir dist
-          cp -r metamask-extension/dist/chrome/* dist/
+          cp -r tmp-metamask/dist/chrome/. dist/
 
-      - name: Create and push branch with changes
+      - name: Clean up temp clone
+        run: rm -rf tmp-metamask
+
+      - name: Create and push branch
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git checkout -b update-metamask-${{ github.run_id }}
           git add dist/
-          git commit -m "Update MetaMask dist files"
+          git commit -m "Update MetaMask Chrome dist"
           git push origin update-metamask-${{ github.run_id }}
 
       - name: Create Pull Request
@@ -68,8 +61,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: update-metamask-${{ github.run_id }}
-          base: main  # 👈 make sure this is your real base branch
+          base: main
           title: "Update MetaMask dist files"
           body: |
-            This PR updates the dist files from MetaMask.
-            Generated automatically by the GitHub Action.
+            This PR updates the Chrome dist files from MetaMask.
+            Triggered by GitHub Actions.
