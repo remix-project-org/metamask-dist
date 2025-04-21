@@ -1,7 +1,7 @@
 name: Update MetaMask Extension
 
 on:
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
   # schedule:
   #   - cron: '0 0 1 * *' # Uncomment to run monthly on the 1st at 00:00 UTC
 
@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BROWSERIFY_SHIM_DISABLE_LAVAMOAT: 1
+
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v4
@@ -17,17 +18,16 @@ jobs:
       - name: Install Corepack and enable it
         run: |
           corepack enable
-          corepack prepare yarn@stable --activate
 
       - name: Clone MetaMask repo
         run: |
           git clone https://github.com/MetaMask/metamask-extension.git
-          cd metamask-extension
 
-          # Use Corepack to prepare Yarn from package.json
+      - name: Set Yarn version from MetaMask package.json
+        run: |
+          cd metamask-extension
           corepack enable
           yarn set version from sources
-        working-directory: ${{ github.workspace }}
 
       - name: Install dependencies
         run: |
