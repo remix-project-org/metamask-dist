@@ -7,9 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NODE_OPTIONS: "--require ''"
       BROWSERIFY_SHIM_DISABLE_LAVAMOAT: 1
-      INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
 
     steps:
       - name: Checkout this repo
