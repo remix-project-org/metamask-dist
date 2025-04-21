@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd tmp-metamask
-          yarn install --immutable
+          yarn install
 
       - name: Configure .metamaskrc
         run: |
@@ -44,7 +44,10 @@ jobs:
       - name: Copy built dist/chrome to repo
         run: |
           rm -rf dist && mkdir dist
-          cp -r tmp-metamask/dist/chrome/* dist/
+          cp -r tmp-metamask/dist/chrome/. dist/
+
+      - name: Clean up temp clone
+        run: rm -rf tmp-metamask
 
       - name: Create and push branch
         run: |
