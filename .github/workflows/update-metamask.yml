@@ -21,7 +21,7 @@ jobs:
         run: |
           cd tmp-metamask
           corepack enable
-          yarn set version from sources
+          yarn set version 4.7.0
 
       - name: Install dependencies
         run: |
