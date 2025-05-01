@@ -6340,7 +6340,7 @@ Before adding a color here make sure that there isn't a design token available.
   --transparent: transparent;
   --qr-code-white-background: #fff;
   --color-network-goerli-default: #1098fc;
-  --color-network-sepolia-default: #cfb5f0;
+  --color-network-sepolia-default: #c65cf2;
   --color-network-goerli-inverse: #fcfcfc;
   --color-network-sepolia-inverse: #fcfcfc;
   --color-network-localhost-default: #bbc0c5;
@@ -6387,6 +6387,9 @@ body {
   padding: 0;
   font-size: 16px;
   overflow: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 html {
@@ -22798,32 +22801,30 @@ DEPRECATED
   Z-Indicies
 */
 .token-list__empty-list {
-  height: 214.5px;
+  height: 237.5px;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: calc(576px - 1px)) {
   .token-list__empty-list {
-    height: 207.5px;
+    height: 237.5px;
   }
 }
 
 .token-list__tokens-container {
   overflow: auto;
-  max-height: 214.5px;
+  max-height: 237.5px;
 }
 
 @media screen and (max-width: calc(576px - 1px)) {
   .token-list__tokens-container {
-    max-height: 207.5px;
+    max-height: 237.5px;
   }
 }
 
 .token-list__token_component {
   cursor: pointer;
-}
-
-.token-list__token_component__network-badge {
-  box-sizing: content-box;
 }
 
 .token-list__token_component--disabled {
@@ -26906,7 +26907,7 @@ DEPRECATED
   display: flex;
   flex-direction: row;
   height: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   padding: 0 16px;
   width: 100%;
 }
@@ -42015,17 +42016,11 @@ DEPRECATED
 
 .btn-default {
   color: var(--color-text-alternative);
-  border: 1px solid var(--color-border-default);
   background: var(--color-background-default);
-}
-
-.btn-default:hover {
-  border-color: var(--color-border-default);
 }
 
 .btn-default:active {
   background: var(--color-background-alternative);
-  border-color: var(--color-border-default);
 }
 
 .btn-default--disabled, .btn-default[disabled] {
@@ -42116,10 +42111,6 @@ input[type=submit][disabled] {
 
 .btn--rounded.btn-secondary:active {
   border-color: var(--color-primary-alternative);
-}
-
-.btn--rounded.btn-default {
-  border: 1px solid var(--color-icon-default);
 }
 
 .btn--rounded.btn-default:hover {
@@ -46025,20 +46016,21 @@ DEPRECATED
   Z-Indicies
 */
 .tippy-popper .tippy-tooltip.tippy-tooltip--mm-custom-theme {
-  background: var(--color-background-default);
+  background: var(--color-background-muted);
   color: var(--color-text-default);
   box-shadow: var(--shadow-size-md) var(--color-shadow-default);
-  padding: 12px 16px;
-  padding-bottom: 11px;
+  padding: 10px 14px;
+  padding-bottom: 12px;
+  border-radius: 8px;
 }
 
 .tippy-popper .tippy-tooltip.tippy-tooltip--mm-custom-theme .tippy-tooltip-content {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-family: var(--font-family-default);
   line-height: 140%;
   font-style: normal;
   font-weight: normal;
-  color: var(--color-text-alternative);
+  color: var(--color-text-default);
 }
 
 [dir="ltr"] .tippy-popper .tippy-tooltip.tippy-tooltip--mm-custom-theme .tippy-tooltip-content {
@@ -48175,12 +48167,12 @@ DEPRECATED
 .import-tokens-modal__confirmation-list {
   overflow-y: scroll;
   overflow: auto;
-  height: 332px;
+  height: 356px;
 }
 
 @media screen and (max-width: calc(576px - 1px)) {
   .import-tokens-modal__confirmation-list {
-    height: 320px;
+    height: 356px;
   }
 }
 
@@ -58596,7 +58588,7 @@ DEPRECATED
 
 .unlock-page__link {
   font-size: unset;
-  font-weight: bold;
+  font-weight: medium;
 }
 
 .unlock-page__support {
