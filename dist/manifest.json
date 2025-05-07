@@ -62,7 +62,7 @@
     }
   ],
   "default_locale": "en",
-  "description": "other build from git id: 8a492c9f",
+  "description": "other build from git id: 6892a5f7",
   "host_permissions": [
     "http://localhost:8545/",
     "file://*/*",
@@ -106,12 +106,13 @@
   },
   "externally_connectable": {
     "matches": [
-      "https://metamask.io/*"
+      "http://*/*",
+      "https://*/*"
     ],
     "ids": [
       "*"
     ]
   },
   "minimum_chrome_version": "89",
-  "version": "12.15.2"
+  "version": "12.17.0"
 }
