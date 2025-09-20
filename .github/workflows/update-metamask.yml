@@ -54,9 +54,11 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # either is fine; this one is the canonical context
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Update MetaMask Chrome dist"
           branch: update-metamask-${{ github.run_id }}
           base: main
