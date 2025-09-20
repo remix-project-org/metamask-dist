@@ -3,8 +3,13 @@ name: Update MetaMask Chrome
 on:
   workflow_dispatch:
   schedule:
-     - cron: '0 0 1 * *'
-     
+    - cron: '0 0 1 * *'   # monthly, 00:00 UTC on the 1st
+
+# ✅ critical: let the bot push & open PRs
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,30 +22,27 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Clone MetaMask extension (shallow)
-        run: |
-          git clone --depth=1 https://github.com/MetaMask/metamask-extension.git tmp-metamask
+        run: git clone --depth=1 https://github.com/MetaMask/metamask-extension.git tmp-metamask
 
       - name: Set up correct Yarn
+        working-directory: tmp-metamask
         run: |
-          cd tmp-metamask
           corepack enable
           yarn set version 4.9.1
 
       - name: Install dependencies
-        run: |
-          cd tmp-metamask
-          yarn install
+        working-directory: tmp-metamask
+        run: yarn install
 
       - name: Configure .metamaskrc
+        working-directory: tmp-metamask
         run: |
           cp .metamaskrc{.dist,}
           sed -i "s/^INFURA_PROJECT_ID=.*/INFURA_PROJECT_ID=${INFURA_PROJECT_ID}/" .metamaskrc
-        working-directory: tmp-metamask
-        
+
       - name: Build Chrome dist
-        run: |
-          cd tmp-metamask
-          yarn dist --apply-lavamoat=false
+        working-directory: tmp-metamask
+        run: yarn dist --apply-lavamoat=false
 
       - name: Copy built dist/chrome to repo
         run: |
@@ -53,7 +55,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # either is fine; this one is the canonical context
+          token: ${{ github.token }}
           commit-message: "Update MetaMask Chrome dist"
           branch: update-metamask-${{ github.run_id }}
           base: main
@@ -63,3 +66,6 @@ jobs:
             Triggered by GitHub Actions.
           add-paths: |
             dist/**
+          # Optional but helps with branch rules requiring a known committer
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
