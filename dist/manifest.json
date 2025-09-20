@@ -62,7 +62,7 @@
     }
   ],
   "default_locale": "en",
-  "description": "other build from git id: 6892a5f7",
+  "description": "staging build from git id: 2c6193cf",
   "host_permissions": [
     "http://localhost:8545/",
     "file://*/*",
@@ -83,6 +83,9 @@
   },
   "manifest_version": 3,
   "name": "MetaMask MV3 snow",
+  "optional_permissions": [
+    "clipboardRead"
+  ],
   "permissions": [
     "activeTab",
     "alarms",
@@ -92,7 +95,8 @@
     "storage",
     "unlimitedStorage",
     "webRequest",
-    "offscreen"
+    "offscreen",
+    "identity"
   ],
   "sandbox": {
     "pages": [
@@ -104,6 +108,9 @@
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'none'; frame-ancestors 'none'; font-src 'self';",
     "sandbox": "sandbox allow-scripts; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'; default-src 'none'; connect-src *; font-src 'self';"
   },
+  "cross_origin_opener_policy": {
+    "value": "same-origin"
+  },
   "externally_connectable": {
     "matches": [
       "http://*/*",
@@ -113,6 +120,7 @@
       "*"
     ]
   },
-  "minimum_chrome_version": "89",
-  "version": "12.17.0"
+  "minimum_chrome_version": "115",
+  "version": "13.5.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqZDxqBR1jHc1TygPHRO+GEyjMENrt3GLn2zXZg0VJ+S8EDuPSQR3sh14qDGWqbqpVk6+6ZF5QI5Ofx9lqAbNV7KjZT4W4RcXJ0VnTqPKUvhWm5+PfUbWMmnuQPebLjuVAkjiZUtY6OfVDowJdYmz4OLp6s64g+lH/Skz3lPKgVQKkWqrDDOy+wPsMBhiYWVGJvRkWA1f73mzhu6yTex/VivXg5PCck/xFN2/UiWTOYK4a/f8/XdVvN6yJd6XHH2lC7BJ+e8Trx0YeIC+3GNgv85rnlb4h31TzF4tmGV2cXB6d1Xw2KT0K+eS4KbTct5tCHOnnDZXvGhJDBrCH786jQIDAQAB"
 }
