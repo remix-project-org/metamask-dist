@@ -62,7 +62,7 @@
     }
   ],
   "default_locale": "en",
-  "description": "staging build from git id: 2c6193cf",
+  "description": "staging build from git id: 11c1a331",
   "host_permissions": [
     "http://localhost:8545/",
     "file://*/*",
@@ -107,9 +107,6 @@
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'none'; frame-ancestors 'none'; font-src 'self';",
     "sandbox": "sandbox allow-scripts; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'; default-src 'none'; connect-src *; font-src 'self';"
-  },
-  "cross_origin_opener_policy": {
-    "value": "same-origin"
   },
   "externally_connectable": {
     "matches": [

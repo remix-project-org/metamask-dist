@@ -1379,6 +1379,10 @@ video {
   min-width: 1.5rem;
 }
 
+.max-w-48{
+  max-width: 12rem;
+}
+
 .max-w-56{
   max-width: 14rem;
 }
@@ -1393,10 +1397,6 @@ video {
 
 .flex-1{
   flex: 1 1 0%;
-}
-
-.flex-shrink-0{
-  flex-shrink: 0;
 }
 
 .shrink{
@@ -1599,10 +1599,6 @@ to{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.text-balance{
-  text-wrap: balance;
 }
 
 .break-normal{
@@ -21405,10 +21401,6 @@ DEPRECATED
   --size: 48px;
 }
 
-.mm-avatar-account__jazzicon {
-  display: flex;
-}
-
 .mm-avatar-favicon__image {
   width: 100%;
 }
@@ -21928,7 +21920,7 @@ a.mm-button-base:hover {
   }
 }
 
-.mm-skeleton--hide-children * {
+.mm-skeleton * {
   visibility: hidden;
 }
 
@@ -22658,21 +22650,6 @@ DEPRECATED
 
 [dir="rtl"] .unconnected-account-alert__checkbox-label-tooltip {
   margin-right: 8px;
-}
-
-.beta-header__message {
-  text-align: center;
-  flex-grow: 1;
-}
-
-.beta-header__button {
-  background: transparent;
-  padding: 0 6px;
-  margin: 0;
-}
-
-.beta-header__button i {
-  color: var(--color-warning-inverse);
 }
 
 .cancel-speedup-popover__wrapper {
@@ -24129,59 +24106,6 @@ DEPRECATED
 
 [dir="rtl"] .home-notification__tooltip-wrapper {
   margin-right: 8px;
-}
-
-/*
-Responsive breakpoints
-*/
-/*
-DEPRECATED
-*/
-/**
-* @deprecated The typography mixins `@include design-system.H1` - `@include design-system.H9` have been deprecated in favor of the `<Text>` component from the component-library.
-* Please update your code to use the `<Text>` component instead, which can be found in ui/components/component-library/text/text.tsx.
-* You can find documentation for the new `<Text>` component in the MetaMask Storybook:
-* {@link https://metamask.github.io/metamask-storybook/?path=/docs/components-componentlibrary-text--docs}
-* If you would like to help with the replacement of the old mixins `@include design-system.H1` - `@include design-system.H9`, please submit a pull request against this GitHub issue:
-* {@link https://github.com/MetaMask/metamask-extension/issues/19533}
-*/
-/*
-  Z-Indicies
-*/
-.info-box {
-  border-radius: 4px;
-  background-color: var(--color-background-alternative);
-  position: relative;
-  padding: 16px;
-  display: flex;
-  flex-flow: column;
-  color: var(--color-text-alternative);
-}
-
-.info-box__close::after {
-  content: "×";
-  font-size: 29px;
-  font-weight: 200;
-  color: var(--color-icon-default);
-  position: absolute;
-  top: 0;
-  cursor: pointer;
-}
-
-[dir="ltr"] .info-box__close::after {
-  right: 12px;
-}
-
-[dir="rtl"] .info-box__close::after {
-  left: 12px;
-}
-
-.info-box__description {
-  font-size: 0.75rem;
-  font-family: var(--font-family-default);
-  line-height: 140%;
-  font-style: normal;
-  font-weight: normal;
 }
 
 /*
@@ -25984,7 +25908,7 @@ DEPRECATED
   Z-Indicies
 */
 .srp-input-import__container {
-  min-height: 264px;
+  min-height: 218px;
 }
 
 .srp-input-import__srp-note .mm-textarea:focus {
@@ -26028,8 +25952,6 @@ DEPRECATED
 
 .srp-input-import__actions {
   height: 3rem;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--color-primary-inverse);
 }
 
 .srp-input-import__text {
@@ -26887,20 +26809,6 @@ DEPRECATED
   flex: 1;
 }
 
-.transaction-list__empty {
-  flex: 1;
-  display: grid;
-  grid-template-rows: auto;
-  padding-top: 24px;
-}
-
-.transaction-list__empty-text {
-  grid-row-start: 2;
-  display: flex;
-  justify-content: center;
-  color: var(--color-text-muted);
-}
-
 .transaction-list__view-more {
   margin: 16px auto;
   max-width: 200px;
@@ -27218,11 +27126,6 @@ DEPRECATED
   }
 }
 
-.loading-overlay__error-buttons button {
-  margin: 5px;
-  padding: 5px 30px;
-}
-
 /*
 Responsive breakpoints
 */
@@ -27396,18 +27299,15 @@ DEPRECATED
   gap: 5px;
   font-size: 12px;
   max-width: 100%;
-}
-
-[dir="ltr"] .name {
-  padding: 1px 8px 1px 4px;
-}
-
-[dir="rtl"] .name {
-  padding: 1px 4px 1px 8px;
+  color: var(--color-text-default);
 }
 
 .name__clickable {
   cursor: pointer;
+}
+
+.name__clickable:hover .name__name {
+  color: var(--color-info-default);
 }
 
 .name__trust-signal-icon {
@@ -27415,64 +27315,12 @@ DEPRECATED
   height: 16px;
 }
 
-.name__missing {
-  background-color: var(--color-background-alternative);
+.name__warning:hover .name__name {
+  color: var(--color-warning-default) !important;
 }
 
-.name__missing .name__value {
-  color: var(--color-text-default);
-}
-
-.name__saved {
-  background-color: var(--color-info-muted);
-}
-
-.name__saved .name__name {
-  color: var(--color-info-default);
-}
-
-.name__recognized_unsaved {
-  background-color: var(--color-background-alternative);
-}
-
-.name__recognized_unsaved .name__name {
-  color: var(--color-text-default);
-}
-
-.name__verified {
-  background-color: var(--color-info-muted);
-}
-
-.name__verified .name__name,
-.name__verified .name__value {
-  color: var(--color-info-default);
-}
-
-.name__warning {
-  background-color: var(--color-warning-muted);
-}
-
-.name__warning .name__name,
-.name__warning .name__value {
-  color: var(--color-text-default);
-}
-
-.name__malicious {
-  background-color: var(--color-error-muted);
-}
-
-.name__malicious .name__name,
-.name__malicious .name__value {
-  color: var(--color-text-default);
-}
-
-.name__unknown {
-  background-color: var(--color-background-alternative);
-}
-
-.name__unknown .name__name,
-.name__unknown .name__value {
-  color: var(--color-text-default);
+.name__malicious:hover .name__name {
+  color: var(--color-error-default) !important;
 }
 
 .name__value, .name__name {
@@ -27509,6 +27357,11 @@ DEPRECATED
 
 .expandIcon.expanded {
   rotate: -180deg;
+}
+
+.hoverable:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .shield-entry-modal__header {
@@ -39107,26 +38960,6 @@ DEPRECATED
   }
 }
 
-.breadcrumbs {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.breadcrumb {
-  height: 10px;
-  width: 10px;
-  border: 1px solid var(--color-border-default);
-  border-radius: 50%;
-}
-
-[dir="ltr"] .breadcrumb + .breadcrumb {
-  margin-left: 10px;
-}
-
-[dir="rtl"] .breadcrumb + .breadcrumb {
-  margin-right: 10px;
-}
-
 /*
 Responsive breakpoints
 */
@@ -42756,101 +42589,6 @@ DEPRECATED
   margin-bottom: 9px;
 }
 
-.radio-group {
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 60px;
-  width: 100%;
-}
-
-.radio-group--has-recommendation {
-  grid-template-rows: 100px;
-}
-
-.radio-group label {
-  cursor: pointer;
-}
-
-.radio-group__column {
-  text-align: center;
-}
-
-.radio-group__column-recommended {
-  height: 20px;
-}
-
-.radio-group__column-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.radio-group__column-line, .radio-group__column-horizontal-line, .radio-group__column-radio, .radio-group__column-label {
-  flex: 1 1 auto;
-}
-
-.radio-group__column-start-connector {
-  width: calc(50% + 0.5px);
-  height: 6px;
-  border-bottom: 1px solid var(--color-border-muted);
-  align-self: flex-end;
-}
-
-[dir="ltr"] .radio-group__column-start-connector {
-  border-left: 1px solid var(--color-border-muted);
-}
-
-[dir="rtl"] .radio-group__column-start-connector {
-  border-right: 1px solid var(--color-border-muted);
-}
-
-.radio-group__column-end-connector {
-  width: calc(50% + 0.5px);
-  height: 6px;
-  border-bottom: 1px solid var(--color-border-muted);
-  align-self: flex-start;
-}
-
-[dir="ltr"] .radio-group__column-end-connector {
-  border-right: 1px solid var(--color-border-muted);
-}
-
-[dir="rtl"] .radio-group__column-end-connector {
-  border-left: 1px solid var(--color-border-muted);
-}
-
-.radio-group__column-vertical-line {
-  width: 1px;
-  height: 5px;
-}
-
-[dir="ltr"] .radio-group__column-vertical-line {
-  border-left: 1px solid var(--color-border-muted);
-}
-
-[dir="rtl"] .radio-group__column-vertical-line {
-  border-right: 1px solid var(--color-border-muted);
-}
-
-.radio-group__column-horizontal-line {
-  height: 1px;
-  border-bottom: 1px solid var(--color-border-muted);
-  width: 100%;
-}
-
-.radio-group__column-radio input {
-  cursor: pointer;
-  margin: 0;
-}
-
-.radio-group__column-radio, .radio-group__column-label {
-  text-align: center;
-}
-
-.radio-group__column-label {
-  padding-top: 6px;
-}
-
 /*
 Responsive breakpoints
 */
@@ -44908,6 +44646,11 @@ DEPRECATED
 
 .networks-subtitle {
   cursor: pointer;
+  border-radius: 6px;
+}
+
+.networks-subtitle:hover {
+  background-color: var(--color-background-default-hover);
 }
 
 /*
@@ -44935,8 +44678,8 @@ DEPRECATED
 }
 
 .multichain-connected-site-menu {
-  height: 24px;
-  width: 24px;
+  height: 32px;
+  width: 32px;
   padding: 0;
 }
 
@@ -46366,23 +46109,19 @@ DEPRECATED
   flex-shrink: 0;
 }
 
-.multichain-account-cell:hover:not(.multichain-account-cell--no-hover) {
+.multichain-account-cell:hover:not(.multichain-account-cell--no-hover):not(.is-selected) {
   background: var(--color-background-default-hover);
 }
 
-.multichain-account-cell:hover:not(.multichain-account-cell--no-hover) .multichain-account-cell__account-avatar {
-  border-color: var(--color-primary-default);
-}
-
-.multichain-account-cell:hover:not(.multichain-account-cell--no-hover) .multichain-account-cell__account-name {
+.multichain-account-cell:hover:not(.multichain-account-cell--no-hover):not(.is-selected) .multichain-account-cell__account-name {
   color: var(--color-primary-default);
 }
 
-.multichain-account-cell:hover:not(.multichain-account-cell--no-hover) .multichain-account-cell__end_accessory .multichain-account-cell-popover-menu-button {
+.multichain-account-cell:hover:not(.multichain-account-cell--no-hover):not(.is-selected) .multichain-account-cell__end_accessory .multichain-account-cell-popover-menu-button {
   background: var(--color-primary-muted);
 }
 
-.multichain-account-cell:hover:not(.multichain-account-cell--no-hover) .multichain-account-cell__end_accessory .multichain-account-cell-popover-menu-button-icon {
+.multichain-account-cell:hover:not(.multichain-account-cell--no-hover):not(.is-selected) .multichain-account-cell__end_accessory .multichain-account-cell-popover-menu-button-icon {
   background-color: var(--color-primary-default);
 }
 
@@ -50767,16 +50506,6 @@ DEPRECATED
   margin-left: 1rem;
 }
 
-.secure-your-wallet__list {
-  list-style: disc inside;
-}
-
-.secure-your-wallet__srp-design-image {
-  width: 100%;
-  height: 180px;
-  object-fit: contain;
-}
-
 /*
 Responsive breakpoints
 */
@@ -51465,6 +51194,26 @@ DEPRECATED
     justify-content: center;
     align-items: start;
   }
+}
+
+.onboarding-metametrics__checkbox-label {
+  cursor: pointer;
+  width: 100%;
+}
+
+.onboarding-metametrics__checkbox {
+  cursor: pointer;
+}
+
+.onboarding-metametrics__checkbox-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.onboarding-metametrics__user-control {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .onboarding-metametrics p {
@@ -52890,6 +52639,20 @@ DEPRECATED
   margin-bottom: 0;
 }
 
+.transaction-shield-page .warning-button:hover {
+  color: var(--color-warning-default);
+}
+
+.transaction-shield-page__notification-banner {
+  margin-inline: 0;
+}
+
+@media screen and (max-width: calc(576px - 1px)) {
+  .transaction-shield-page__notification-banner {
+    margin-inline: -16px;
+  }
+}
+
 .settings-page {
   position: relative;
   background: var(--color-background-default);
@@ -53324,6 +53087,11 @@ DEPRECATED
 
 .settings-page__button {
   cursor: pointer;
+}
+
+.settings-page__button-defaut-settings {
+  width: 100%;
+  max-width: 100%;
 }
 
 [dir="ltr"] .settings-page__copy-icon {
@@ -56715,13 +56483,13 @@ DEPRECATED
 }
 
 [dir="ltr"] .multichain-account-details-page__srp-button {
-  padding-left: 12px;
-  padding-right: 20px;
+  padding-left: 16px;
+  padding-right: 12px;
 }
 
 [dir="rtl"] .multichain-account-details-page__srp-button {
-  padding-right: 12px;
-  padding-left: 20px;
+  padding-right: 16px;
+  padding-left: 12px;
 }
 
 /*
@@ -56859,9 +56627,13 @@ DEPRECATED
 /*
   Z-Indicies
 */
-.connect-page__edit-icon {
+.multichain-connect-page__edit-icon {
   height: 32px;
   width: 32px;
+}
+
+.multichain-connect-page__tab {
+  flex: 1;
 }
 
 .critical-error {
